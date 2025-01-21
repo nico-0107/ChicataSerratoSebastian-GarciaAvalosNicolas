@@ -1,17 +1,15 @@
 #include <iostream>
 using namespace std;
 
-int gVector[100]; // Arreglo para guardar los elementos
-int gContador = 0; // Contador para saber cuántos elementos hay almacenados
+int gVector[100];
+int gContador = 0;
 
-//función para añadir un elemento al vector (Insert)
 void insertarElemento(int elemento){
   if(gContador < 100){
     gVector[gContador++] = elemento;
   }
 }
 
-//Función para mostrar los elementos del vector (Display)
 void mostrarElementos(){
   for(int i = 0; i < gContador; i++){
     cout<<"Elemento ["<<i<<"]: "<<gVector[i]<<endl;
@@ -19,13 +17,12 @@ void mostrarElementos(){
   cout<<"Cantidad de elementos: "<<gContador<<endl;
 }
 
-//Función para eliminar un elemento del vector (Delete)
 void eliminarElemento(int elemento) {
   int i;
 
   for (i = 0; i < gContador; i++) {
     if (gVector[i] == elemento) {
-      break; // Si encontramos el valor, salimos del bucle
+      break;
     }
   }
 
@@ -35,7 +32,6 @@ void eliminarElemento(int elemento) {
     return;
   }
 
-  // Desplazar los elementos hacia la izquierda
   for (; i < gContador - 1; i++) {
     gVector[i] = gVector[i + 1];
   }

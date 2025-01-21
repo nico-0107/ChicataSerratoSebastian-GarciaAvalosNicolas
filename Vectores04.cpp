@@ -33,7 +33,7 @@ CVector::CVector(int delta) {
 
 // Implementación del destructor
 CVector::~CVector() {
-    delete[] m_pVect; // Liberar la memoria asignada dinámicamente
+    delete[] m_pVect;
 }
 
 void CVector::redimensionar() {

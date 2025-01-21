@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int *gpVect = NULL; // Puntero que apunta al arreglo dinámico donde se almacenan los elementos.
+int *gpVect = NULL;
 int gContador = 0;
 int gnMax = 0;
 
@@ -9,17 +9,17 @@ void Redimensionar(){
   const int delta = 5;
   int *pTemp, i;
   pTemp = new int[gnMax + delta];
-  for (i = 0; i < gnMax; i++) // Transferir los elementos al nuevo arreglo
+  for (i = 0; i < gnMax; i++)
     pTemp[i] = gpVect[i];
-  delete[] gpVect; // Liberar la memoria del arreglo antiguo
-  gpVect = pTemp; // Actualizar el puntero al nuevo arreglo
-  gnMax += delta; // Incrementar la capacidad máxima
+  delete[] gpVect;
+  gpVect = pTemp;
+  gnMax += delta;
 }
 
 void insertarElementos(int elemento){
-  if (gContador == gnMax) // Si no hay espacio para el nuevo elemento
-    Redimensionar(); // Aumentar el tamaño del arreglo
-  gpVect[gContador++] = elemento; // Insertar el elemento al final del arreglo
+  if (gContador == gnMax)
+    Redimensionar();
+  gpVect[gContador++] = elemento;
 }
 
 void mostrarElementos(){
@@ -32,23 +32,20 @@ void mostrarElementos(){
 }
 
 void eliminarElemento(int elemento){
-  int index = -1; // Variable para almacenar la posición del elemento
+  int index = -1;
 
-  // Buscar la posición del elemento
   for (int i = 0; i < gContador; i++) {
     if (gpVect[i] == elemento) {
-      index = i; // Encontrado, almacenar la posición
+      index = i;
       break;
     }
   }
 
-  // Si el elemento no se encuentra
   if (index == -1) {
     cout<<"El elemento "<<elemento<<" no se encuentra en el arreglo."<<endl;
     return;
   }
 
-  // Desplazar los elementos hacia la izquierda para llenar el hueco
   for (int i = index; i < gContador - 1; i++) {
     gpVect[i] = gpVect[i + 1];
   }

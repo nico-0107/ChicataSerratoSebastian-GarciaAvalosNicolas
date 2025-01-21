@@ -12,26 +12,21 @@ void redimensionar(Vector *pThis){
   const int delta = 5;
   int *pTemp, i;
 
-  // Crear un nuevo buffer con el tamaño actualizado.
   pTemp = new int[pThis->m_nMax + pThis->m_nDelta];
 
-  // Transferir los elementos existentes al nuevo buffer.
   for(i = 0; i < pThis->m_nMax; i++)
     pTemp[i] = pThis->m_pVect[i];
 
-  // Liberar la memoria del buffer anterior.
   delete [] pThis->m_pVect;
 
-  // Actualizar el puntero y la capacidad máxima.
   pThis->m_pVect = pTemp;
   pThis->m_nMax += pThis->m_nDelta;
 }
 
 void insertarElemento(Vector *pThis, int elemento){
-  if (pThis->m_nCount == pThis->m_nMax) // Si no hay espacio
-    redimensionar(pThis); // Redimensionar el vector dinámico.
+  if (pThis->m_nCount == pThis->m_nMax)
+    redimensionar(pThis);
 
-  // Insertar el elemento al final del vector y actualizar el contador.
   pThis->m_pVect[pThis->m_nCount++] = elemento;
 }
 
@@ -47,7 +42,6 @@ void mostrarElementos(Vector *pThis){
 void eliminarElemento(Vector *pThis, int elemento){
   int index = -1;
 
-  // Buscar la posición del elemento
   for (int i = 0; i < pThis->m_nCount; i++) {
     if (pThis->m_pVect[i] == elemento) {
       index = i;
@@ -55,13 +49,11 @@ void eliminarElemento(Vector *pThis, int elemento){
     }
   }
 
-  // Si el elemento no se encuentra
   if (index == -1) {
     cout << "El elemento " << elemento<< " no se encuentra en el arreglo." << endl;
     return;
   }
 
-  // Desplazar los elementos hacia la izquierda para llenar el hueco
   for (int i = index; i < pThis->m_nCount - 1; i++) {
     pThis->m_pVect[i] = pThis->m_pVect[i + 1];
   }
